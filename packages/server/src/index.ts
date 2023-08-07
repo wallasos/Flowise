@@ -998,7 +998,12 @@ export class App {
                     : await nodeInstance.run(nodeToExecuteData, incomingInput.question, { chatHistory: incomingInput.history, logger })
 
                 logger.debug(`[server]: Finished running ${nodeToExecuteData.label} (${nodeToExecuteData.id})`)
-                return res.json(result)
+                // Criar um objeto com a resposta
+                const respostaObj = { data: result }
+                
+                // Retornar o objeto criado na resposta da requisição
+                return res.json(respostaObj);
+                //return res.json(result)
             }
         } catch (e: any) {
             logger.error('[server]: Error:', e)
